@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <script src="https://www.gstatic.com/firebaseapp/11.0.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebaseapp/11.0.1/firebase-database.js"></script>
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyClWaAQEzTllthUtWPAysU6olAvFK65E4w",
-            authDomain: "harmonize-condor.firebaseapp.com",
-            projectId: "harmonize-condor",
-            databaseURL: "https://harmonize-condor-default-rtdb.firebaseio.com",
-            storageBucket: "harmonize-condor.firebasestorage.app",
-            messagingSenderId: "877498933070",
-            appId: "1:877498933070:web:cc05385b09077ffc6b881f"
-        };
 
-        firebase.initializeApp(firebaseConfig);
-    </script>
+<script type="module">
+  // Importar Firebase usando compat (compatível com GitHub Pages)
+  import { initializeApp } from 'https://www.gstatic.com/firebaseapp/11.0.1/firebase-app.js';
+  import { getDatabase } from 'https://www.gstatic.com/firebaseapp/11.0.1/firebase-database.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyClWaAQEzTllthUtWPAysU6olAvFK65E4w",
+    authDomain: "harmonize-condor.firebaseapp.com",
+    projectId: "harmonize-condor",
+    databaseURL: "https://harmonize-condor-default-rtdb.firebaseio.com",
+    storageBucket: "harmonize-condor.firebasestorage.app",
+    messagingSenderId: "877498933070",
+    appId: "1:877498933070:web:cc05385b09077ffc6b881f"
+  };
+
+  window.firebaseApp = initializeApp(firebaseConfig);
+  window.firebaseDB = getDatabase(window.firebaseApp);
+</script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1836,48 +1840,53 @@
   });
 </script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
+<script type="module">
+  import { ref, push } from 'https://www.gstatic.com/firebaseapp/11.0.1/firebase-database.js';
+
+  document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contatoForm');
     
     form.addEventListener('submit', function(e) {
-        e.preventDefault();
+      e.preventDefault();
+      
+      const nome = document.getElementById('nome').value;
+      const telefone = document.getElementById('telefone').value;
+      const email = document.getElementById('email').value;
+      const especialidade = document.getElementById('especialidade').value;
+      const mensagem = document.getElementById('mensagem').value;
+      
+      const agendamento = {
+        nome: nome,
+        telefone: telefone,
+        email: email,
+        especialidade: especialidade,
+        mensagem: mensagem,
+        data: new Date().toISOString(),
+        status: 'novo'
+      };
+      
+      const db = window.firebaseDB;
+      const agendamentosRef = ref(db, 'agendamentos');
+      
+      push(agendamentosRef, agendamento).then(() => {
+        document.getElementById('contatoForm').style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
         
-        const nome = document.getElementById('nome').value;
-        const telefone = document.getElementById('telefone').value;
-        const email = document.getElementById('email').value;
-        const especialidade = document.getElementById('especialidade').value;
-        const mensagem = document.getElementById('mensagem').value;
-        
-        const db = firebase.database();
-        const agendamento = {
+        setTimeout(() => {
+          const params = new URLSearchParams({
             nome: nome,
             telefone: telefone,
             email: email,
-            especialidade: especialidade,
-            mensagem: mensagem,
-            data: new Date().toISOString(),
-            status: 'novo'
-        };
-        
-        db.ref('agendamentos').push(agendamento).then(() => {
-            document.getElementById('contatoForm').style.display = 'none';
-            document.getElementById('formSuccess').style.display = 'block';
-            
-            setTimeout(() => {
-                const params = new URLSearchParams({
-                    nome: nome,
-                    telefone: telefone,
-                    email: email,
-                    especialidade: especialidade
-                });
-                window.location.href = `thank-you.html?${params.toString()}`;
-            }, 2000);
-        }).catch((error) => {
-            alert('Erro: ' + error.message);
-        });
+            especialidade: especialidade
+          });
+          window.location.href = `thank-you.html?${params.toString()}`;
+        }, 2000);
+      }).catch((error) => {
+        alert('Erro: ' + error.message);
+        console.error(error);
+      });
     });
-});
+  });
 </script>
 
 </body>
