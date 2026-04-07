@@ -2,24 +2,33 @@
 <html lang="pt-BR">
 <head>
 
-<script type="module">
-  // Importar Firebase usando compat (compatível com GitHub Pages)
-  import { initializeApp } from 'https://www.gstatic.com/firebaseapp/11.0.1/firebase-app.js';
-  import { getDatabase } from 'https://www.gstatic.com/firebaseapp/11.0.1/firebase-database.js';
+<!-- 🔥 Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyClWaAQEzTllthUtWPAysU6olAvFK65E4w",
-    authDomain: "harmonize-condor.firebaseapp.com",
-    projectId: "harmonize-condor",
-    databaseURL: "https://harmonize-condor-default-rtdb.firebaseio.com",
-    storageBucket: "harmonize-condor.firebasestorage.app",
-    messagingSenderId: "877498933070",
-    appId: "1:877498933070:web:cc05385b09077ffc6b881f"
-  };
-
-  window.firebaseApp = initializeApp(firebaseConfig);
-  window.firebaseDB = getDatabase(window.firebaseApp);
+<!-- 🔥 EmailJS (COLOCA AQUI) -->
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+  console.log("JS CARREGOU");
+(function(){
+    emailjs.init("STq13XSigfgL0wQmf");
+})();
 </script>
+
+<script>
+    const firebaseConfig = {
+        apiKey: "AIzaSyClWaAQEzTllthUtWPAysU6olAvFK65E4w",
+        authDomain: "harmonize-condor.firebaseapp.com",
+        projectId: "harmonize-condor",
+        databaseURL: "https://harmonize-condor-default-rtdb.firebaseio.com",
+        storageBucket: "harmonize-condor.firebasestorage.app",
+        messagingSenderId: "877498933070",
+        appId: "1:877498933070:web:cc05385b09077ffc6b881f"
+    };
+
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -506,8 +515,6 @@
     margin-top: 4px;
   }
 
-  .sobre-text {}
-
   .sobre-text p {
     font-size: 15px;
     font-weight: 300;
@@ -806,39 +813,55 @@
   }
 
   .contato-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    max-width: 1100px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr; /* uma coluna (centralizado) */
+  justify-items: center;      /* centraliza conteúdo */
+  max-width: 1100px;
+  margin: 0 auto;
+  }
+
+  .contato-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   }
 
   .contato-info h3 {
+    text-align: center;
+    white-space: normal;
+    display: inline;
     font-family: 'Cormorant Garamond', serif;
     font-size: 32px;
     font-weight: 300;
+    max-width: 700px;
     color: var(--brown);
     margin-bottom: 24px;
   }
 
-  .contato-info p {
-    font-size: 14px;
-    font-weight: 300;
-    color: var(--text-light);
-    line-height: 1.8;
-    margin-bottom: 36px;
-  }
+.contato-info p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 36px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .contato-items {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.contato-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 40px;
+  max-width: 600px;  
+  margin: 0 auto;     
   }
 
   .contato-item {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
+    gap: 12px;
   }
 
   .contato-item-icon {
@@ -876,6 +899,9 @@
   }
 
   a.contato-item-value:hover { color: var(--gold); }
+
+
+ 
 
   /* ─── FORM ─── */
   .contato-form {
@@ -1625,7 +1651,7 @@
 
     <div class="contato-grid">
         <div class="contato-info">
-            <h3>Estamos aqui<br>para cuidar de você</h3>
+            <h3>Estamos aqui para cuidar de você</h3>
             <p>Nossa equipe está pronta para atender você com atenção e carinho. Agende sua consulta pelos canais abaixo ou preencha o formulário.</p>
             <div class="contato-items">
                 <div class="contato-item">
@@ -1667,51 +1693,7 @@
             </div>
         </div>
 
-        <div>
-<form class="contato-form" id="contatoForm">
-    <div class="form-row">
-        <div class="form-group">
-            <label for="nome">Nome completo</label>
-            <input type="text" name="nome" id="nome" placeholder="Seu nome" required>
-        </div>
-        <div class="form-group">
-            <label for="telefone">Telefone / WhatsApp</label>
-            <input type="tel" name="telefone" id="telefone" placeholder="(55) 9 ____-____" required>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" name="email" id="email" placeholder="seu@email.com" required>
-    </div>
-
-    <div class="form-group">
-        <label for="especialidade">Especialidade desejada</label>
-        <select name="especialidade" id="especialidade" required>
-            <option value="">Selecione uma especialidade</option>
-            <option>Neuropsicóloga</option>
-            <option>Psicóloga</option>
-            <option>Psicopedagoga</option>
-            <option>Dentista</option>
-            <option>Biomédica</option>
-            <option>Makeup</option>
-            <option>Outro</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="mensagem">Mensagem (opcional)</label>
-        <textarea name="mensagem" id="mensagem" placeholder="Descreva brevemente sua necessidade..."></textarea>
-    </div>
-
-    <button type="submit" class="form-submit">Enviar Mensagem</button>
-</form>
-
-<div class="form-success" id="formSuccess" style="display: none;">
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin:0 auto 12px; display:block; stroke:var(--gold)"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-    Mensagem enviada com sucesso!<br>
-    <span style="font-family:'Jost',sans-serif; font-size:14px; font-weight:300; color:var(--text-light);">Redirecionando...</span>
-</div>
         </div>
     </div>
 </section>
@@ -1754,7 +1736,12 @@
         <li><a href="https://wa.me/5555996009559">WhatsApp</a></li>
         <li><a href="https://www.google.com/maps/place/Harmonize/@-28.2061356,-53.4896898,17z/data=!3m1!4b1!4m6!3m5!1s0x94fc53da901ac4d5:0x6a23c35c612e087b!8m2!3d-28.2061404!4d-53.4871202!16s%2Fg%2F11k0v_6wyv?entry=ttu&g_ep=EgoyMDI2MDMzMS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer">
     Rua Ernesto Schmidt, 143, Condor, Rio Grande Do Sul, Brazil</a></li>
-      </ul>
+          <li>
+  <a href="mailto:harmonize.condor.rs@gmail.com">
+    Email
+  </a>
+</li>
+  </ul>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1769,6 +1756,7 @@
       <a href="https://www.facebook.com/HarmonizeCondor/" target="_blank" class="social-btn" title="Facebook">
         <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
       </a>
+      
     </div>
   </div>
 </footer>
@@ -1840,54 +1828,46 @@
   });
 </script>
 
-<script type="module">
-  import { ref, push } from 'https://www.gstatic.com/firebaseapp/11.0.1/firebase-database.js';
+<script>
+document.addEventListener('DOMContentLoaded', function() {
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('contatoForm');
-    
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const nome = document.getElementById('nome').value;
-      const telefone = document.getElementById('telefone').value;
-      const email = document.getElementById('email').value;
-      const especialidade = document.getElementById('especialidade').value;
-      const mensagem = document.getElementById('mensagem').value;
-      
-      const agendamento = {
-        nome: nome,
-        telefone: telefone,
-        email: email,
-        especialidade: especialidade,
-        mensagem: mensagem,
-        data: new Date().toISOString(),
-        status: 'novo'
-      };
-      
-      const db = window.firebaseDB;
-      const agendamentosRef = ref(db, 'agendamentos');
-      
-      push(agendamentosRef, agendamento).then(() => {
-        document.getElementById('contatoForm').style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-        
-        setTimeout(() => {
-          const params = new URLSearchParams({
-            nome: nome,
-            telefone: telefone,
-            email: email,
-            especialidade: especialidade
-          });
-          window.location.href = `thank-you.html?${params.toString()}`;
-        }, 2000);
-      }).catch((error) => {
-        alert('Erro: ' + error.message);
-        console.error(error);
-      });
+    // 🔥 INICIALIZA EMAILJS (ESSENCIAL)
+    emailjs.init("STq13XSigfgL0wQmf");
+
+console.log("JS CARREGOU");
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    const form = document.getElementById("contatoForm");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        alert("CLIQUE FUNCIONOU");
+
+        let nome = document.getElementById("nome").value;
+        let email = document.getElementById("email").value;
+        let mensagem = document.getElementById("mensagem").value;
+
+        emailjs.send("service_rrrc1fl", "template_yu6ifs7", {
+            name: nome,
+            message: mensagem,
+            time: new Date().toLocaleString('pt-BR'),
+            email: email
+        })
+        .then(function(response) {
+            console.log("Email enviado!", response);
+        })
+        .catch(function(error) {
+            console.log("Erro:", error);
+        });
     });
-  });
+
+});
+
+});
 </script>
 
 </body>
+
 </html>
