@@ -1352,8 +1352,8 @@
       <div class="card-icon">
         <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
       </div>
-      <h3>Terapias Integrativas</h3>
-      <p>Terapias integrativas com uso exclusivo de florais, promovendo equilíbrio emocional e bem-estar. Atendimentos personalizados que auxiliam na redução do estresse, ansiedade e conflitos internos, favorecendo a harmonia entre mente e corpo e o florescimento do seu potencial natural.</p>
+      <h3>Neuropsicóloga</h3>
+      <p>Avaliação e acompanhamento neuropsicológico com abordagem humanizada e baseada em evidências. Atendimentos personalizados que auxiliam na atenção, memória e aspectos emocionais, promovendo equilíbrio, autonomia e melhor qualidade de vida.</p>
       <a href="#contato" class="card-link">Agendar →</a>
     </div>
     <div class="card">
@@ -1523,38 +1523,41 @@
     letter-spacing: 1px;
   }
 
-  @media (max-width: 768px) {
-    .team-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
+ .team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* PC */
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
 
-    .section-title {
-      font-size: 28px;
-    }
+/* telas menores */
+@media (max-width: 1024px) {
+  .team-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  @media (max-width: 480px) {
-    .team-grid {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-
-    .section-title {
-      font-size: 24px;
-    }
-
-    .team-card {
-      padding: 20px 15px;
-    }
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+
+@media (max-width: 480px) {
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 
 <section id="equipe">
   <div class="section-header">
     <div class="section-label">Nosso Time</div>
     <h2 class="section-title"><em>Profissionais</em> dedicados</h2>
-    <p class="section-desc">Uma equipe multidisciplinar comprometida com a sua saúde e qualidade de vida.</p>
+    <p class="section-desc">
+      Uma equipe multidisciplinar comprometida com a sua saúde e qualidade de vida.
+    </p>
     <div class="divider">
       <div class="divider-line"></div>
       <div class="divider-ornament"></div>
@@ -1563,45 +1566,76 @@
   </div>
 
   <div class="team-grid">
+
+    <!-- 1 -->
     <div class="team-card">
       <div class="team-photo">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 64 64">
           <circle cx="32" cy="22" r="12" fill="#E8DCC4"/>
           <path d="M10 56c0-12.2 9.8-22 22-22s22 9.8 22 22" fill="#E8DCC4"/>
         </svg>
       </div>
       <div class="team-name">Psicopedagoga</div>
       <div class="team-role">Psicopedagogia</div>
-      <div class="team-crm">CRFa · RS ??</div>
+      <div class="team-crm">CRFa · RS</div>
     </div>
 
+    <!-- 2 -->
     <div class="team-card">
       <div class="team-photo">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 64 64">
           <circle cx="32" cy="22" r="12" fill="#E8DCC4"/>
           <path d="M10 56c0-12.2 9.8-22 22-22s22 9.8 22 22" fill="#E8DCC4"/>
         </svg>
       </div>
-      <div class="team-name">Dentista1</div>
+      <div class="team-name">Dentista 1</div>
       <div class="team-role">Odontologia</div>
       <div class="team-crm">CRO · RS</div>
     </div>
 
-        <div class="team-card">
+    <!-- 3 -->
+    <div class="team-card">
       <div class="team-photo">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 64 64">
           <circle cx="32" cy="22" r="12" fill="#E8DCC4"/>
           <path d="M10 56c0-12.2 9.8-22 22-22s22 9.8 22 22" fill="#E8DCC4"/>
         </svg>
       </div>
-      <div class="team-name">Dentista2</div>
+      <div class="team-name">Dentista 2</div>
       <div class="team-role">Odontologia</div>
       <div class="team-crm">CRO · RS</div>
     </div>
 
+    <!-- 4 -->
     <div class="team-card">
       <div class="team-photo">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 64 64">
+          <circle cx="32" cy="22" r="12" fill="#E8DCC4"/>
+          <path d="M10 56c0-12.2 9.8-22 22-22s22 9.8 22 22" fill="#E8DCC4"/>
+        </svg>
+      </div>
+      <div class="team-name">Neuropsicóloga</div>
+      <div class="team-role">Neuropsicologia</div>
+      <div class="team-crm">CRP · RS</div>
+    </div>
+
+    <!-- 5 -->
+    <div class="team-card">
+      <div class="team-photo">
+        <svg viewBox="0 0 64 64">
+          <circle cx="32" cy="22" r="12" fill="#E8DCC4"/>
+          <path d="M10 56c0-12.2 9.8-22 22-22s22 9.8 22 22" fill="#E8DCC4"/>
+        </svg>
+      </div>
+      <div class="team-name">Terapeuta Integrativa</div>
+      <div class="team-role">Floral Terapias</div>
+      <div class="team-crm">—</div>
+    </div>
+
+    <!-- 6 -->
+    <div class="team-card">
+      <div class="team-photo">
+        <svg viewBox="0 0 64 64">
           <circle cx="32" cy="22" r="12" fill="#E8DCC4"/>
           <path d="M10 56c0-12.2 9.8-22 22-22s22 9.8 22 22" fill="#E8DCC4"/>
         </svg>
@@ -1611,21 +1645,23 @@
       <div class="team-crm">CRP · RS</div>
     </div>
 
+    <!-- 7 -->
     <div class="team-card">
       <div class="team-photo">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 64 64">
           <circle cx="32" cy="22" r="12" fill="#E8DCC4"/>
           <path d="M10 56c0-12.2 9.8-22 22-22s22 9.8 22 22" fill="#E8DCC4"/>
         </svg>
       </div>
       <div class="team-name">Esteticista</div>
       <div class="team-role">Makeup</div>
-      <div class="team-crm">??</div>
+      <div class="team-crm">—</div>
     </div>
 
+    <!-- 8 -->
     <div class="team-card">
       <div class="team-photo">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 64 64">
           <circle cx="32" cy="22" r="12" fill="#E8DCC4"/>
           <path d="M10 56c0-12.2 9.8-22 22-22s22 9.8 22 22" fill="#E8DCC4"/>
         </svg>
@@ -1634,6 +1670,7 @@
       <div class="team-role">Biomedicina</div>
       <div class="team-crm">CFBM · RS</div>
     </div>
+
   </div>
 </section>
 <!-- ─── CONTATO ─── -->
